@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book an Appointment — Beauty By Keisha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#1b120f;
+    --espresso-2:#2a1c17;
+    --gold:#c9a15a;
+    --gold-light:#e3c383;
+    --champagne:#ecdcc0;
+    --cream:#faf5ec;
+    --wine:#5c1a24;
+    --error:#c44536;
+    --max-w:1240px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--espresso);
+    border-bottom:1px solid rgba(201,161,90,0.25);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:78px;
+  }
+  .nav-logo{
+    font-family:'Marcellus', serif;
+    color:var(--champagne);
+    font-size:1.15rem;
+    letter-spacing:0.12em;
+  }
+  .nav-logo em{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:1.3rem;
+    margin-right:4px;
+  }
+  .nav-links{
+    display:flex;gap:36px;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--champagne);
+  }
+  .nav-links a{opacity:0.85;transition:opacity .2s;}
+  .nav-links a:hover, .nav-links a:focus-visible{opacity:1;color:var(--gold-light);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 30px;
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    border:none;
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:var(--espresso);
+    border:1px solid var(--gold);
+    font-weight:500;
+  }
+  .btn-gold:hover, .btn-gold:focus-visible{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);}
+  .btn-gold:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+  .nav-links{display:none;}
+  @media(min-width:860px){ .nav-links{display:flex;} }
+
+  /* ---------- HEADER ---------- */
+  .page-header{
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(201,161,90,0.10), transparent 55%),
+      linear-gradient(160deg, var(--espresso) 0%, var(--espresso-2) 60%, #33231c 100%);
+    color:var(--cream);
+    padding:68px 0;
+    margin-bottom:68px;
+    border-bottom:1px solid rgba(201,161,90,0.15);
+  }
+  .page-header h1{
+    font-family:'Marcellus', serif;
+    font-size:clamp(2rem, 4vw, 3.2rem);
+    letter-spacing:0.02em;
+    margin-bottom:12px;
+  }
+  .page-header p{
+    font-size:1rem;
+    color:rgba(250,245,236,0.75);
+    max-width:480px;
+  }
+
+  /* ---------- FORM CONTAINER ---------- */
+  .form-wrapper{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    margin-bottom:68px;
+  }
+  @media(min-width:900px){
+    .form-wrapper{
+      grid-template-columns:1.2fr 1fr;
+      gap:64px;
+    }
+  }
+
+  .form-panel{
+    background:white;
+    padding:48px;
+    border-radius:2px;
+    box-shadow:0 2px 8px rgba(27,18,15,0.06);
+  }
+
+  .form-panel h2{
+    font-family:'Marcellus', serif;
+    font-size:1.5rem;
+    letter-spacing:0.02em;
+    margin-bottom:32px;
+    color:var(--espresso);
+  }
+
+  /* ---------- FORM FIELDS ---------- */
+  .form-group{
+    margin-bottom:28px;
+  }
+  .form-group:last-child{margin-bottom:0;}
+
+  label{
+    display:block;
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--espresso);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+
+  input, select, textarea{
+    width:100%;
+    padding:14px 16px;
+    font-family:'Jost', sans-serif;
+    font-size:0.95rem;
+    border:1px solid rgba(27,18,15,0.15);
+    border-radius:2px;
+    background:var(--cream);
+    color:var(--espresso);
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,161,90,0.1);
+  }
+
+  input::placeholder{color:rgba(27,18,15,0.4);}
+
+  select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231b120f' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    padding-right:40px;
+    cursor:pointer;
+  }
+
+  textarea{
+    resize:vertical;
+    min-height:100px;
+  }
+
+  .form-error{
+    display:none;
+    color:var(--error);
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    margin-top:4px;
+  }
+
+  .form-error.show{display:block;}
+
+  input.invalid, select.invalid, textarea.invalid{
+    border-color:var(--error);
+    background-color:rgba(196,69,54,0.03);
+  }
+
+  /* ---------- TWO-COLUMN FIELDS ---------- */
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  /* ---------- SUBMIT BUTTON ---------- */
+  .form-submit{
+    display:flex;flex-direction:column;gap:12px;
+  }
+
+  .form-submit .btn-gold{
+    width:100%;
+    padding:18px 32px;
+    font-size:0.85rem;
+    font-weight:500;
+  }
+
+  .form-note{
+    font-size:0.78rem;
+    color:rgba(27,18,15,0.55);
+    text-align:center;
+    line-height:1.6;
+  }
+
+  /* ---------- SUMMARY PANEL ---------- */
+  .booking-summary{
+    background:var(--champagne);
+    padding:48px;
+    border-radius:2px;
+    border-left:4px solid var(--gold);
+    height:fit-content;
+    position:sticky;top:120px;
+  }
+
+  .booking-summary h3{
+    font-family:'Marcellus', serif;
+    font-size:1.1rem;
+    letter-spacing:0.02em;
+    margin-bottom:28px;
+    color:var(--espresso);
+  }
+
+  .summary-row{
+    display:flex;justify-content:space-between;
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px solid rgba(27,18,15,0.1);
+    font-size:0.9rem;
+  }
+
+  .summary-row:last-child{margin-bottom:0;border-bottom:none;}
+
+  .summary-label{
+    color:rgba(27,18,15,0.6);
+    font-weight:400;
+  }
+
+  .summary-value{
+    color:var(--espresso);
+    font-weight:500;
+  }
+
+  .summary-value.empty{
+    color:rgba(27,18,15,0.35);
+    font-style:italic;
+  }
+
+  .summary-total{
+    margin-top:24px;
+    padding-top:24px;
+    border-top:2px solid rgba(27,18,15,0.15);
+    display:flex;justify-content:space-between;
+    align-items:center;
+  }
+
+  .summary-total .summary-label{
+    font-family:'Marcellus', serif;
+    font-size:1rem;
+    font-weight:400;
+    color:var(--espresso);
+  }
+
+  .summary-total .summary-value{
+    font-family:'Marcellus', serif;
+    font-size:1.3rem;
+    color:var(--wine);
+  }
+
+  .success-message{
+    display:none;
+    background:rgba(92,26,36,0.08);
+    border:1px solid var(--wine);
+    border-radius:2px;
+    padding:16px;
+    margin-top:16px;
+    color:var(--wine);
+    font-size:0.85rem;
+  }
+
+  .success-message.show{display:block;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--espresso);
+    color:rgba(250,245,236,0.7);
+    padding:64px 0 32px;
+    margin-top:68px;
+  }
+  .footer-top{
+    display:grid;
+    gap:40px;
+    grid-template-columns:1fr;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(201,161,90,0.18);
+    margin-bottom:28px;
+  }
+  @media(min-width:760px){ .footer-top{grid-template-columns:1.3fr 1fr 1fr;} }
+
+  footer .nav-logo{margin-bottom:14px;}
+  footer .foot-desc{font-size:0.86rem;line-height:1.7;max-width:320px;color:rgba(250,245,236,0.55);}
+
+  .foot-col h4{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    margin-bottom:16px;
+  }
+  .foot-col ul{display:flex;flex-direction:column;gap:10px;font-size:0.86rem;color:rgba(250,245,236,0.65);}
+
+  .footer-bottom{
+    display:flex;flex-wrap:wrap;gap:12px;
+    justify-content:space-between;
+    font-size:0.76rem;
+    color:rgba(250,245,236,0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <h1>Book an Appointment</h1>
+    <p>Select your service, preferred date and time. We'll confirm your booking and send you details to WhatsApp.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="form-wrapper">
+      <!-- LEFT: FORM -->
+      <div class="form-panel">
+        <h2>Your Details</h2>
+        <form id="bookingForm">
+
+          <!-- Service Selection -->
+          <div class="form-group">
+            <label for="service">Service *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="hair-salon">Hair Salon</option>
+              <option value="nail-lash">Nail & Lash Studio</option>
+              <option value="spa">Spa</option>
+              <option value="wig-sales">Premium Wig Sales</option>
+              <option value="beauty-products">Beauty Products</option>
+            </select>
+            <div class="form-error" id="serviceError">Please select a service</div>
+          </div>
+
+          <!-- Date & Time Row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date *</label>
+              <input type="date" id="date" name="date" required>
+              <div class="form-error" id="dateError">Please select a date</div>
+            </div>
+            <div class="form-group">
+              <label for="time">Time *</label>
+              <input type="time" id="time" name="time" required>
+              <div class="form-error" id="timeError">Please select a time</div>
+            </div>
+          </div>
+
+          <!-- Name -->
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+            <div class="form-error" id="nameError">Please enter your name</div>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="08012345678" required>
+            <div class="form-error" id="phoneError">Please enter a valid phone number</div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com">
+            <div class="form-error" id="emailError">Please enter a valid email</div>
+          </div>
+
+          <!-- Notes -->
+          <div class="form-group">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Any special requests? E.g., hair color preference, nail design ideas..."></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit">
+            <button type="submit" class="btn btn-gold" id="submitBtn">Confirm Booking</button>
+            <div class="form-note">We'll contact you to confirm via WhatsApp or call</div>
+            <div class="success-message" id="successMsg">✓ Booking submitted! Check your WhatsApp for confirmation.</div>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT: SUMMARY -->
+      <div class="booking-summary">
+        <h3>Booking Summary</h3>
+
+        <div class="summary-row">
+          <span class="summary-label">Service</span>
+          <span class="summary-value empty" id="summaryService">Not selected</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Date</span>
+          <span class="summary-value empty" id="summaryDate">Not selected</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Time</span>
+          <span class="summary-value empty" id="summaryTime">Not selected</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Duration</span>
+          <span class="summary-value" id="summaryDuration">30–90 mins</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Name</span>
+          <span class="summary-value empty" id="summaryName">Not entered</span>
+        </div>
+
+        <div class="summary-row">
+          <span class="summary-label">Phone</span>
+          <span class="summary-value empty" id="summaryPhone">Not entered</span>
+        </div>
+
+        <div class="summary-total">
+          <span class="summary-label">Estimated Cost</span>
+          <span class="summary-value" id="summaryPrice">₦—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+        <p class="foot-desc">Shop 10, Muniru Plaza, opp. Ojaaja Mall, Abraham Adesanya, Lekki-Epe Expressway, Lagos.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>0706 739 1929</li>
+          <li>0801 234 5678</li>
+          <li>@Beautyby_keisha</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Hours</h4>
+        <ul>
+          <li>Tue – Sun · 9am – 7pm</li>
+          <li>Closed Mondays</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Beauty By Keisha. All rights reserved.</span>
+      <span>Lekki, Lagos</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDDYLewPwoQqOmyKkP4AagYvBk_zID7juw",
+    authDomain: "beauty-by-keisha.firebaseapp.com",
+    projectId: "beauty-by-keisha",
+    storageBucket: "beauty-by-keisha.firebasestorage.app",
+    messagingSenderId: "36594164298",
+    appId: "1:36594164298:web:8c83d7957be29f6604bcb3"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  
+  console.log('Firebase initialized successfully');
+
+  const form = document.getElementById('bookingForm');
+  const serviceSelect = document.getElementById('service');
+  const dateInput = document.getElementById('date');
+  const timeInput = document.getElementById('time');
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
+  const notesInput = document.getElementById('notes');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+
+  // Service pricing (in Naira)
+  const servicePricing = {
+    'hair-salon': { name: 'Hair Salon', price: 15000, duration: '60–90 mins' },
+    'nail-lash': { name: 'Nail & Lash Studio', price: 12000, duration: '60–75 mins' },
+    'spa': { name: 'Spa', price: 18000, duration: '90 mins' },
+    'wig-sales': { name: 'Premium Wig Sales', price: 25000, duration: 'Consultation' },
+    'beauty-products': { name: 'Beauty Products', price: 0, duration: 'Variable' }
+  };
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+
+  // Set time constraints (9am-7pm)
+  timeInput.setAttribute('min', '09:00');
+  timeInput.setAttribute('max', '19:00');
+
+  // Update summary in real-time
+  serviceSelect.addEventListener('change', updateSummary);
+  dateInput.addEventListener('change', updateSummary);
+  timeInput.addEventListener('change', updateSummary);
+  nameInput.addEventListener('input', updateSummary);
+  phoneInput.addEventListener('input', updateSummary);
+
+  function updateSummary(){
+    // Service
+    if(serviceSelect.value){
+      const service = servicePricing[serviceSelect.value];
+      document.getElementById('summaryService').textContent = service.name;
+      document.getElementById('summaryService').classList.remove('empty');
+      document.getElementById('summaryDuration').textContent = service.duration;
+      document.getElementById('summaryPrice').textContent = service.price > 0 ? `₦${service.price.toLocaleString()}` : 'Consultation';
+    } else {
+      document.getElementById('summaryService').textContent = 'Not selected';
+      document.getElementById('summaryService').classList.add('empty');
+      document.getElementById('summaryPrice').textContent = '₦—';
+    }
+
+    // Date
+    if(dateInput.value){
+      const date = new Date(dateInput.value);
+      const formatted = date.toLocaleDateString('en-NG', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('summaryDate').textContent = formatted;
+      document.getElementById('summaryDate').classList.remove('empty');
+    } else {
+      document.getElementById('summaryDate').textContent = 'Not selected';
+      document.getElementById('summaryDate').classList.add('empty');
+    }
+
+    // Time
+    if(timeInput.value){
+      const [hour, min] = timeInput.value.split(':');
+      const timeObj = new Date(2000, 0, 1, hour, min);
+      const formatted = timeObj.toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit', hour12: true });
+      document.getElementById('summaryTime').textContent = formatted;
+      document.getElementById('summaryTime').classList.remove('empty');
+    } else {
+      document.getElementById('summaryTime').textContent = 'Not selected';
+      document.getElementById('summaryTime').classList.add('empty');
+    }
+
+    // Name
+    if(nameInput.value){
+      document.getElementById('summaryName').textContent = nameInput.value;
+      document.getElementById('summaryName').classList.remove('empty');
+    } else {
+      document.getElementById('summaryName').textContent = 'Not entered';
+      document.getElementById('summaryName').classList.add('empty');
+    }
+
+    // Phone
+    if(phoneInput.value){
+      document.getElementById('summaryPhone').textContent = phoneInput.value;
+      document.getElementById('summaryPhone').classList.remove('empty');
+    } else {
+      document.getElementById('summaryPhone').textContent = 'Not entered';
+      document.getElementById('summaryPhone').classList.add('empty');
+    }
+  }
+
+  // Form validation
+  function validateForm(){
+    let isValid = true;
+    const fields = [
+      { input: serviceSelect, errorId: 'serviceError', validate: () => serviceSelect.value !== '' },
+      { input: dateInput, errorId: 'dateError', validate: () => dateInput.value !== '' },
+      { input: timeInput, errorId: 'timeError', validate: () => timeInput.value !== '' },
+      { input: nameInput, errorId: 'nameError', validate: () => nameInput.value.trim() !== '' },
+      { input: phoneInput, errorId: 'phoneError', validate: () => /^[0-9]{10,11}$/.test(phoneInput.value.replace(/\D/g, '')) }
+    ];
+
+    if(emailInput.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)){
+      document.getElementById('emailError').classList.add('show');
+      emailInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('emailError').classList.remove('show');
+      emailInput.classList.remove('invalid');
+    }
+
+    fields.forEach(field => {
+      const errorEl = document.getElementById(field.errorId);
+      if(!field.validate()){
+        field.input.classList.add('invalid');
+        errorEl.classList.add('show');
+        isValid = false;
+      } else {
+        field.input.classList.remove('invalid');
+        errorEl.classList.remove('show');
+      }
+    });
+
+    return isValid;
+  }
+
+  // Form submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if(!validateForm()){
+      return;
+    }
+
+    // Prepare booking data
+    const bookingData = {
+      service: serviceSelect.options[serviceSelect.selectedIndex].text,
+      date: dateInput.value,
+      time: timeInput.value,
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      notes: notesInput.value,
+      timestamp: new Date().toISOString(),
+      status: 'pending' // pending, confirmed, completed, cancelled
+    };
+
+    // Disable button & show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+
+    // Save to Firestore
+    db.collection('bookings').add(bookingData)
+      .then((docRef) => {
+        console.log('Booking saved with ID:', docRef.id);
+        
+        // Send to Make.com webhook for WhatsApp notification
+        sendToWhatsApp(bookingData);
+        
+        // Show success message
+        successMsg.classList.add('show');
+        submitBtn.textContent = 'Booking Confirmed!';
+
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          form.reset();
+          updateSummary();
+          successMsg.classList.remove('show');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Error saving booking:', error);
+        alert('Error saving booking. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm Booking';
+      });
+  });
+
+  // Send booking to Make.com webhook for WhatsApp
+  function sendToWhatsApp(bookingData){
+    const webhookUrl = 'https://hook.eu1.make.com/4q1am3vec1r7919wpmcxmqhjgsj1iuvq';
+    
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+    })
+    .then(response => {
+      console.log('WhatsApp notification sent:', response.status);
+    })
+    .catch(error => {
+      console.error('Error sending WhatsApp notification:', error);
+      // Don't break the flow if webhook fails
+    });
+  }
+
+  // Initialize summary on page load
+  updateSummary();
+</script>
+
+</body>
+</html>
