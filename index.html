@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty By Keisha — Luxury Beauty Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#1b120f;
+    --espresso-2:#2a1c17;
+    --gold:#c9a15a;
+    --gold-light:#e3c383;
+    --champagne:#ecdcc0;
+    --cream:#faf5ec;
+    --wine:#5c1a24;
+    --success:#2d5a3d;
+    --warning:#d4a574;
+    --error:#c44536;
+    --max-w:1240px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:var(--cream);
+    color:var(--espresso);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--max-w);margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAVIGATION ---------- */
+  .main-nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--espresso);
+    border-bottom:1px solid rgba(201,161,90,0.25);
+  }
+  .main-nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:78px;
+  }
+  .nav-logo{
+    font-family:'Marcellus', serif;
+    color:var(--champagne);
+    font-size:1.15rem;
+    letter-spacing:0.12em;
+  }
+  .nav-logo em{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:1.3rem;
+    margin-right:4px;
+  }
+  .nav-tabs{
+    display:flex;gap:36px;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--champagne);
+  }
+  .nav-tabs button{
+    background:none;border:none;cursor:pointer;color:var(--champagne);
+    opacity:0.85;transition:opacity .2s, color .2s;
+    font-family:'Jost', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-tabs button:hover, .nav-tabs button.active{opacity:1;color:var(--gold-light);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 30px;
+    font-family:'Jost', sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    border-radius:2px;
+    cursor:pointer;
+    transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    border:none;
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:var(--espresso);
+    border:1px solid var(--gold);
+    font-weight:500;
+  }
+  .btn-gold:hover, .btn-gold:focus-visible{background:var(--gold-light);border-color:var(--gold-light);transform:translateY(-2px);}
+  .btn-gold:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+  .btn-outline{
+    background:transparent;
+    color:var(--champagne);
+    border:1px solid rgba(236,220,192,0.4);
+  }
+  .btn-outline:hover, .btn-outline:focus-visible{border-color:var(--gold-light);color:var(--gold-light);transform:translateY(-2px);}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* ---------- HOME PAGE ---------- */
+  .hero{
+    background:radial-gradient(ellipse at 15% 20%, rgba(201,161,90,0.10), transparent 55%),linear-gradient(160deg, var(--espresso) 0%, var(--espresso-2) 60%, #33231c 100%);
+    color:var(--cream);
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;grid-template-columns:1fr;gap:56px;padding-top:76px;padding-bottom:76px;align-items:center;
+  }
+  @media(min-width:900px){
+    .hero .wrap{grid-template-columns:1.05fr 0.95fr;padding-top:104px;padding-bottom:104px;}
+  }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:12px;
+    font-size:0.76rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    margin-bottom:26px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
+
+  .hero h1{
+    font-weight:400;
+    line-height:1.02;
+    margin-bottom:22px;
+  }
+  .hero h1 .script{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    color:var(--gold-light);
+  }
+  .hero h1 .wordmark{
+    display:block;
+    font-family:'Marcellus', serif;
+    font-size:clamp(2.4rem, 7vw, 4.8rem);
+    letter-spacing:0.10em;
+    color:var(--cream);
+    margin-top:2px;
+  }
+
+  .hero p.lede{
+    max-width:440px;
+    font-size:1.02rem;
+    line-height:1.7;
+    color:rgba(250,245,236,0.78);
+    margin-bottom:34px;
+  }
+
+  .service-pills{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-bottom:38px;
+  }
+  .service-pills li{
+    font-size:0.74rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:8px 16px;
+    border:1px solid rgba(201,161,90,0.4);
+    border-radius:999px;
+    color:var(--champagne);
+  }
+
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:44px;}
+
+  .hero-contact{
+    display:flex;flex-wrap:wrap;gap:28px;
+    font-size:0.8rem;
+    color:rgba(250,245,236,0.6);
+    padding-top:26px;
+    border-top:1px solid rgba(201,161,90,0.18);
+  }
+  .hero-contact strong{color:var(--gold-light);font-weight:500;display:block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    max-width:440px;
+    margin:0 auto;
+    justify-self:center;
+  }
+  .ring-frame{
+    position:absolute;inset:0;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    box-shadow:0 0 0 10px rgba(201,161,90,0.06);
+  }
+  .photo-block{
+    position:absolute;
+    top:6%;left:6%;right:6%;bottom:6%;
+    border-radius:50%;
+    overflow:hidden;
+    background:radial-gradient(circle at 35% 25%, #4a352a, #241811 70%);
+    border:1px solid rgba(201,161,90,0.5);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .photo-block img{width:100%;height:100%;object-fit:cover;}
+
+  .accent-ring-sm{
+    position:absolute;
+    width:34%;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    bottom:-4%;
+    left:-8%;
+    background:var(--espresso-2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .accent-ring-sm span{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:0.85rem;
+    text-align:center;
+    line-height:1.3;
+    padding:0 8px;
+  }
+
+  .services{
+    background:var(--champagne);
+    padding:88px 0;
+  }
+  .services-head{
+    display:flex;flex-direction:column;gap:14px;
+    margin-bottom:56px;
+    max-width:560px;
+  }
+  .services-head .eyebrow{color:var(--wine);}
+  .services-head .eyebrow::before{background:var(--wine);}
+  .services-head h2{
+    font-family:'Marcellus', serif;
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    letter-spacing:0.02em;
+    color:var(--espresso);
+  }
+
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:1px;
+    background:rgba(27,18,15,0.12);
+    border:1px solid rgba(27,18,15,0.12);
+  }
+  @media(min-width:640px){ .services-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(min-width:980px){ .services-grid{grid-template-columns:repeat(5,1fr);} }
+
+  .service-card{
+    background:var(--champagne);
+    padding:36px 26px;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:#e4d1a8;}
+  .service-ring{
+    width:52px;height:52px;
+    border-radius:50%;
+    border:1px solid var(--wine);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:22px;
+    font-family:'Marcellus', serif;
+    color:var(--wine);
+    font-size:1.1rem;
+  }
+  .service-card h3{
+    font-family:'Marcellus', serif;
+    font-weight:400;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+    margin-bottom:10px;
+    color:var(--espresso);
+  }
+  .service-card p{
+    font-size:0.85rem;
+    line-height:1.6;
+    color:rgba(27,18,15,0.65);
+  }
+
+  .gallery{
+    background:var(--cream);
+    padding:88px 0;
+  }
+  .gallery-head{
+    display:flex;flex-direction:column;gap:14px;
+    margin-bottom:56px;
+    max-width:560px;
+  }
+  .gallery-head h2{
+    font-family:'Marcellus', serif;
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    letter-spacing:0.02em;
+    color:var(--espresso);
+  }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:16px;
+  }
+  @media(min-width:680px){ .gallery-grid{grid-template-columns:repeat(3, 1fr);} }
+  @media(min-width:1000px){ .gallery-grid{grid-template-columns:repeat(4, 1fr);} }
+
+  .gallery-item{
+    position:relative;
+    overflow:hidden;
+    aspect-ratio:3/4;
+    border-radius:2px;
+    background:var(--espresso);
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;transition:transform .3s ease;
+  }
+  .gallery-item:hover img{transform:scale(1.04);}
+  .gallery-label{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(180deg, transparent 0%, rgba(27,18,15,0.85) 60%);
+    color:var(--champagne);
+    padding:26px 16px 16px;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  footer{
+    background:var(--espresso);
+    color:rgba(250,245,236,0.7);
+    padding:64px 0 32px;
+  }
+  .footer-top{
+    display:grid;
+    gap:40px;
+    grid-template-columns:1fr;
+    padding-bottom:40px;
+    border-bottom:1px solid rgba(201,161,90,0.18);
+    margin-bottom:28px;
+  }
+  @media(min-width:760px){ .footer-top{grid-template-columns:1.3fr 1fr 1fr;} }
+
+  footer .nav-logo{margin-bottom:14px;}
+  footer .foot-desc{font-size:0.86rem;line-height:1.7;max-width:320px;color:rgba(250,245,236,0.55);}
+
+  .foot-col h4{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-light);
+    margin-bottom:16px;
+  }
+  .foot-col ul{display:flex;flex-direction:column;gap:10px;font-size:0.86rem;color:rgba(250,245,236,0.65);}
+
+  .footer-bottom{
+    display:flex;flex-wrap:wrap;gap:12px;
+    justify-content:space-between;
+    font-size:0.76rem;
+    color:rgba(250,245,236,0.4);
+  }
+
+  /* ---------- BOOKING PAGE ---------- */
+  .booking-header{
+    background:radial-gradient(ellipse at 15% 20%, rgba(201,161,90,0.10), transparent 55%),linear-gradient(160deg, var(--espresso) 0%, var(--espresso-2) 60%, #33231c 100%);
+    color:var(--cream);
+    padding:68px 0;
+    margin-bottom:68px;
+    border-bottom:1px solid rgba(201,161,90,0.15);
+  }
+  .booking-header h1{
+    font-family:'Marcellus', serif;
+    font-size:clamp(2rem, 4vw, 3.2rem);
+    letter-spacing:0.02em;
+    margin-bottom:12px;
+  }
+  .booking-header p{
+    font-size:1rem;
+    color:rgba(250,245,236,0.75);
+    max-width:480px;
+  }
+
+  .form-wrapper{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    margin-bottom:68px;
+  }
+  @media(min-width:900px){
+    .form-wrapper{grid-template-columns:1.2fr 1fr;gap:64px;}
+  }
+
+  .form-panel{
+    background:white;
+    padding:48px;
+    border-radius:2px;
+    box-shadow:0 2px 8px rgba(27,18,15,0.06);
+  }
+
+  .form-panel h2{
+    font-family:'Marcellus', serif;
+    font-size:1.5rem;
+    letter-spacing:0.02em;
+    margin-bottom:32px;
+    color:var(--espresso);
+  }
+
+  .form-group{
+    margin-bottom:28px;
+  }
+  .form-group:last-child{margin-bottom:0;}
+
+  label{
+    display:block;
+    font-size:0.8rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--espresso);
+    margin-bottom:8px;
+    font-weight:500;
+  }
+
+  input, select, textarea{
+    width:100%;
+    padding:14px 16px;
+    font-family:'Jost', sans-serif;
+    font-size:0.95rem;
+    border:1px solid rgba(27,18,15,0.15);
+    border-radius:2px;
+    background:var(--cream);
+    color:var(--espresso);
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(201,161,90,0.1);
+  }
+
+  input::placeholder{color:rgba(27,18,15,0.4);}
+
+  select{
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231b120f' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 16px center;
+    padding-right:40px;
+    cursor:pointer;
+  }
+
+  textarea{
+    resize:vertical;
+    min-height:100px;
+  }
+
+  .form-error{
+    display:none;
+    color:var(--error);
+    font-size:0.75rem;
+    letter-spacing:0.05em;
+    margin-top:4px;
+  }
+
+  .form-error.show{display:block;}
+
+  input.invalid, select.invalid, textarea.invalid{
+    border-color:var(--error);
+    background-color:rgba(196,69,54,0.03);
+  }
+
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+
+  .form-submit{
+    display:flex;flex-direction:column;gap:12px;
+  }
+
+  .form-submit .btn-gold{
+    width:100%;
+    padding:18px 32px;
+    font-size:0.85rem;
+    font-weight:500;
+  }
+
+  .form-note{
+    font-size:0.78rem;
+    color:rgba(27,18,15,0.55);
+    text-align:center;
+    line-height:1.6;
+  }
+
+  .booking-summary{
+    background:var(--champagne);
+    padding:48px;
+    border-radius:2px;
+    border-left:4px solid var(--gold);
+    height:fit-content;
+    position:sticky;top:120px;
+  }
+
+  .booking-summary h3{
+    font-family:'Marcellus', serif;
+    font-size:1.1rem;
+    letter-spacing:0.02em;
+    margin-bottom:28px;
+    color:var(--espresso);
+  }
+
+  .summary-row{
+    display:flex;justify-content:space-between;
+    margin-bottom:20px;
+    padding-bottom:16px;
+    border-bottom:1px solid rgba(27,18,15,0.1);
+    font-size:0.9rem;
+  }
+
+  .summary-row:last-child{margin-bottom:0;border-bottom:none;}
+
+  .summary-label{
+    color:rgba(27,18,15,0.6);
+    font-weight:400;
+  }
+
+  .summary-value{
+    color:var(--espresso);
+    font-weight:500;
+  }
+
+  .summary-value.empty{
+    color:rgba(27,18,15,0.35);
+    font-style:italic;
+  }
+
+  .summary-total{
+    margin-top:24px;
+    padding-top:24px;
+    border-top:2px solid rgba(27,18,15,0.15);
+    display:flex;justify-content:space-between;
+    align-items:center;
+  }
+
+  .summary-total .summary-label{
+    font-family:'Marcellus', serif;
+    font-size:1rem;
+    font-weight:400;
+    color:var(--espresso);
+  }
+
+  .summary-total .summary-value{
+    font-family:'Marcellus', serif;
+    font-size:1.3rem;
+    color:var(--wine);
+  }
+
+  .success-message{
+    display:none;
+    background:rgba(92,26,36,0.08);
+    border:1px solid var(--wine);
+    border-radius:2px;
+    padding:16px;
+    margin-top:16px;
+    color:var(--wine);
+    font-size:0.85rem;
+  }
+
+  .success-message.show{display:block;}
+
+  /* ---------- ADMIN PAGE ---------- */
+  .admin-login{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:60vh;
+  }
+
+  .login-box{
+    background:white;
+    padding:48px;
+    border-radius:2px;
+    box-shadow:0 8px 32px rgba(27,18,15,0.15);
+    width:100%;
+    max-width:380px;
+  }
+
+  .login-box h2{
+    font-family:'Marcellus', serif;
+    font-size:1.8rem;
+    letter-spacing:0.02em;
+    margin-bottom:8px;
+    color:var(--espresso);
+  }
+
+  .login-box p{
+    font-size:0.85rem;
+    color:rgba(27,18,15,0.6);
+    margin-bottom:32px;
+  }
+
+  .login-form{display:flex;flex-direction:column;gap:20px;}
+
+  .login-error{
+    color:var(--error);
+    font-size:0.8rem;
+    display:none;
+    background:rgba(196,69,54,0.1);
+    padding:12px;
+    border-radius:2px;
+    margin-bottom:16px;
+  }
+
+  .login-error.show{display:block;}
+
+  .login-btn{
+    background:var(--gold);
+    color:var(--espresso);
+    border:none;
+    padding:16px;
+    font-family:'Jost', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border-radius:2px;
+    font-weight:500;
+    transition:background .25s ease, transform .25s ease;
+  }
+
+  .login-btn:hover{
+    background:var(--gold-light);
+    transform:translateY(-2px);
+  }
+
+  .login-btn:disabled{
+    opacity:0.5;
+    cursor:not-allowed;
+  }
+
+  .admin-logged-in{
+    display:none;
+  }
+
+  .admin-logged-in.active{
+    display:block;
+  }
+
+  .admin-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:24px;
+    margin-bottom:48px;
+  }
+
+  .stat-card{
+    background:white;
+    padding:32px;
+    border-radius:2px;
+    box-shadow:0 2px 8px rgba(27,18,15,0.06);
+    border-left:4px solid var(--gold);
+  }
+
+  .stat-label{
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(27,18,15,0.6);
+    margin-bottom:8px;
+  }
+
+  .stat-number{
+    font-family:'Marcellus', serif;
+    font-size:2rem;
+    color:var(--espresso);
+  }
+
+  .table-wrapper{
+    background:white;
+    border-radius:2px;
+    box-shadow:0 2px 8px rgba(27,18,15,0.06);
+    overflow:hidden;
+  }
+
+  .table-header{
+    background:var(--champagne);
+    padding:20px 24px;
+    border-bottom:1px solid rgba(27,18,15,0.1);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+
+  .table-header h3{
+    font-family:'Marcellus', serif;
+    font-size:1.1rem;
+    letter-spacing:0.02em;
+  }
+
+  .logout-btn{
+    background:var(--wine);
+    color:var(--cream);
+    border:none;
+    padding:10px 24px;
+    font-family:'Jost', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+    border-radius:2px;
+    transition:background .25s ease;
+  }
+
+  .logout-btn:hover{background:rgba(92,26,36,0.8);}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+
+  th{
+    text-align:left;
+    padding:16px 24px;
+    background:var(--champagne);
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--espresso);
+    font-weight:500;
+    border-bottom:1px solid rgba(27,18,15,0.1);
+  }
+
+  td{
+    padding:16px 24px;
+    border-bottom:1px solid rgba(27,18,15,0.08);
+    font-size:0.9rem;
+  }
+
+  tr:hover{background:rgba(201,161,90,0.04);}
+  tr:last-child td{border-bottom:none;}
+
+  .status-badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:2px;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+
+  .status-pending{
+    background:rgba(212,165,116,0.2);
+    color:var(--warning);
+  }
+
+  .status-confirmed{
+    background:rgba(45,90,61,0.2);
+    color:var(--success);
+  }
+
+  .status-completed{
+    background:rgba(27,18,15,0.1);
+    color:var(--espresso);
+  }
+
+  .action-buttons{
+    display:flex;gap:8px;
+  }
+
+  .btn-sm{
+    padding:6px 12px;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border:1px solid rgba(27,18,15,0.15);
+    background:white;
+    color:var(--espresso);
+    cursor:pointer;
+    border-radius:2px;
+    transition:background .2s ease;
+  }
+
+  .btn-sm:hover{background:var(--champagne);}
+
+  .btn-sm.danger{
+    border-color:var(--error);
+    color:var(--error);
+  }
+
+  .btn-sm.danger:hover{background:rgba(196,69,54,0.08);}
+
+  .empty-state{
+    text-align:center;
+    padding:64px 24px;
+    color:rgba(27,18,15,0.5);
+  }
+
+  .loading{
+    text-align:center;
+    padding:48px 24px;
+    color:rgba(27,18,15,0.6);
+  }
+
+  .spinner{
+    display:inline-block;
+    width:24px;
+    height:24px;
+    border:2px solid rgba(27,18,15,0.1);
+    border-top-color:var(--gold);
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+  }
+
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  @media(max-width:768px){
+    table{font-size:0.8rem;}
+    th, td{padding:12px 16px;}
+    .action-buttons{flex-direction:column;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="main-nav">
+  <div class="wrap">
+    <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+    <div class="nav-tabs">
+      <button class="nav-btn active" data-page="home">Home</button>
+      <button class="nav-btn" data-page="booking">Book</button>
+      <button class="nav-btn" data-page="admin">Admin</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <div class="eyebrow">The Luxury Collection</div>
+        <h1>
+          <span class="script">Beauty by</span>
+          <span class="wordmark">KEISHA</span>
+        </h1>
+        <p class="lede">Hair, nails, lashes and skin — one address on Lekki-Epe Expressway for the full luxury beauty experience, from everyday polish to bridal-ready glam.</p>
+
+        <ul class="service-pills">
+          <li>Hair Salon</li>
+          <li>Nail & Lash Studio</li>
+          <li>Spa</li>
+          <li>Premium Wigs</li>
+          <li>Beauty Products</li>
+        </ul>
+
+        <div class="hero-ctas">
+          <button class="btn btn-gold" onclick="document.querySelector('[data-page=booking]').click()">Book an Appointment</button>
+          <button class="btn btn-outline" onclick="document.querySelector('.gallery').scrollIntoView({behavior:'smooth'})">View Gallery</button>
+        </div>
+
+        <div class="hero-contact">
+          <div><strong>Call</strong>0706 739 1929 · 0801 234 5678</div>
+          <div><strong>Visit</strong>Shop 10, Muniru Plaza, Abraham Adesanya, Lekki</div>
+          <div><strong>Instagram</strong>@Beautyby_keisha</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="ring-frame"></div>
+        <div class="photo-block">
+          <img src="https://images.unsplash.com/photo-1709342548703-a675702f19ef?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury box braids styling">
+        </div>
+        <div class="accent-ring-sm"><span>Est. Lekki</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="services">
+    <div class="wrap">
+      <div class="services-head">
+        <div class="eyebrow">Our Services</div>
+        <h2>Everything under one roof</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-ring">H</div>
+          <h3>Hair Salon</h3>
+          <p>Braids, weaves, cuts & styling by senior stylists.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-ring">N</div>
+          <h3>Nail & Lash Studio</h3>
+          <p>Gel, acrylic, nail art and classic or volume lashes.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-ring">S</div>
+          <h3>Spa</h3>
+          <p>Facials, massage and skin treatments to unwind.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-ring">W</div>
+          <h3>Premium Wigs</h3>
+          <p>Curated human-hair wigs, custom-fitted in studio.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-ring">P</div>
+          <h3>Beauty Products</h3>
+          <p>Haircare, skincare and tools we personally use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div class="eyebrow">Gallery</div>
+        <h2>Our Work</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1673470907547-1c0c6a996095?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Box braids hairstyle">
+          <div class="gallery-label">Hair</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1634155322814-907072ac721f?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dramatic lashes">
+          <div class="gallery-label">Lashes</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1761848456393-b5ef09c01f62?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Red nails">
+          <div class="gallery-label">Nails</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1583106617217-406e2c5656fd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ombre nails">
+          <div class="gallery-label">Nails</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1701916672756-615f56fb0d4e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Henna nails">
+          <div class="gallery-label">Nails</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1689553079282-45df1b35741b?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Facial spa">
+          <div class="gallery-label">Spa</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1742029562131-53edea2a95a6?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Massage">
+          <div class="gallery-label">Spa</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1677808448202-1270f6872642?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lashes with flower">
+          <div class="gallery-label">Lashes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+          <p class="foot-desc">Shop 10, Muniru Plaza, opp. Ojaaja Mall, Abraham Adesanya, Lekki-Epe Expressway, Lagos.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>0706 739 1929</li>
+            <li>0801 234 5678</li>
+            <li>@Beautyby_keisha</li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Hours</h4>
+          <ul>
+            <li>Tue – Sun · 9am – 7pm</li>
+            <li>Closed Mondays</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Beauty By Keisha. All rights reserved.</span>
+        <span>Lekki, Lagos</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- BOOKING PAGE -->
+<div id="booking" class="page">
+  <header class="booking-header">
+    <div class="wrap">
+      <h1>Book an Appointment</h1>
+      <p>Select your service, preferred date and time. We'll confirm your booking and send you details to WhatsApp.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="form-wrapper">
+      <div class="form-panel">
+        <h2>Your Details</h2>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="service">Service *</label>
+            <select id="service" name="service" required>
+              <option value="">Select a service</option>
+              <option value="hair-salon">Hair Salon</option>
+              <option value="nail-lash">Nail & Lash Studio</option>
+              <option value="spa">Spa</option>
+              <option value="wig-sales">Premium Wig Sales</option>
+              <option value="beauty-products">Beauty Products</option>
+            </select>
+            <div class="form-error" id="serviceError">Please select a service</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date *</label>
+              <input type="date" id="date" name="date" required>
+              <div class="form-error" id="dateError">Please select a date</div>
+            </div>
+            <div class="form-group">
+              <label for="time">Time *</label>
+              <input type="time" id="time" name="time" required>
+              <div class="form-error" id="timeError">Please select a time</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+            <div class="form-error" id="nameError">Please enter your name</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="08012345678" required>
+            <div class="form-error" id="phoneError">Please enter a valid phone number</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com">
+            <div class="form-error" id="emailError">Please enter a valid email</div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Any special requests?"></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-gold" id="submitBtn">Confirm Booking</button>
+            <div class="form-note">We'll contact you to confirm via email</div>
+            <div class="success-message" id="successMsg">✓ Booking submitted! Check your email for confirmation.</div>
+          </div>
+        </form>
+      </div>
+
+      <div class="booking-summary">
+        <h3>Booking Summary</h3>
+        <div class="summary-row">
+          <span class="summary-label">Service</span>
+          <span class="summary-value empty" id="summaryService">Not selected</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Date</span>
+          <span class="summary-value empty" id="summaryDate">Not selected</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Time</span>
+          <span class="summary-value empty" id="summaryTime">Not selected</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Duration</span>
+          <span class="summary-value" id="summaryDuration">30–90 mins</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Name</span>
+          <span class="summary-value empty" id="summaryName">Not entered</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Phone</span>
+          <span class="summary-value empty" id="summaryPhone">Not entered</span>
+        </div>
+        <div class="summary-total">
+          <span class="summary-label">Estimated Cost</span>
+          <span class="summary-value" id="summaryPrice">₦—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+          <p class="foot-desc">Shop 10, Muniru Plaza, opp. Ojaaja Mall, Abraham Adesanya, Lekki-Epe Expressway, Lagos.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>0706 739 1929</li>
+            <li>0801 234 5678</li>
+            <li>@Beautyby_keisha</li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Hours</h4>
+          <ul>
+            <li>Tue – Sun · 9am – 7pm</li>
+            <li>Closed Mondays</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ADMIN PAGE -->
+<div id="admin" class="page">
+  <div class="wrap" style="padding-top:48px;padding-bottom:48px;">
+    <div id="adminLogin" class="admin-login">
+      <div class="login-box">
+        <h2>Admin Login</h2>
+        <p>Beauty By Keisha booking management</p>
+        <div class="login-error" id="loginError"></div>
+        <form class="login-form" id="loginForm">
+          <div class="form-group">
+            <label for="adminEmail">Password</label>
+            <input type="password" id="adminEmail" placeholder="Enter admin password" required>
+          </div>
+          <button type="submit" class="login-btn" id="loginBtn">Login</button>
+        </form>
+        <p style="margin-top:24px;font-size:0.75rem;color:rgba(27,18,15,0.4);text-align:center;">
+          Demo: Use password <strong>keisha123</strong>
+        </p>
+      </div>
+    </div>
+
+    <div id="adminContent" class="admin-logged-in">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+        <h2 style="font-family:'Marcellus', serif;font-size:1.5rem;letter-spacing:0.02em;">📊 Booking Dashboard</h2>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card">
+          <div class="stat-label">Total Bookings</div>
+          <div class="stat-number" id="statTotal">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending</div>
+          <div class="stat-number" id="statPending">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Confirmed</div>
+          <div class="stat-number" id="statConfirmed">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-number" id="statCompleted">0</div>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h3>All Bookings</h3>
+        </div>
+        <div id="bookingsContainer">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading bookings...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="nav-logo"><em>Beauty by</em>KEISHA</div>
+          <p class="foot-desc">Shop 10, Muniru Plaza, opp. Ojaaja Mall, Abraham Adesanya, Lekki-Epe Expressway, Lagos.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>0706 739 1929</li>
+            <li>0801 234 5678</li>
+            <li>@Beautyby_keisha</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDDYLewPwoQqOmyKkP4AagYvBk_zID7juw",
+    authDomain: "beauty-by-keisha.firebaseapp.com",
+    projectId: "beauty-by-keisha",
+    storageBucket: "beauty-by-keisha.firebasestorage.app",
+    messagingSenderId: "36594164298",
+    appId: "1:36594164298:web:8c83d7957be29f6604bcb3"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // PAGE NAVIGATION
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pageId = btn.dataset.page;
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // BOOKING FORM
+  const form = document.getElementById('bookingForm');
+  const serviceSelect = document.getElementById('service');
+  const dateInput = document.getElementById('date');
+  const timeInput = document.getElementById('time');
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
+  const notesInput = document.getElementById('notes');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+
+  const servicePricing = {
+    'hair-salon': { name: 'Hair Salon', price: 15000, duration: '60–90 mins' },
+    'nail-lash': { name: 'Nail & Lash Studio', price: 12000, duration: '60–75 mins' },
+    'spa': { name: 'Spa', price: 18000, duration: '90 mins' },
+    'wig-sales': { name: 'Premium Wig Sales', price: 25000, duration: 'Consultation' },
+    'beauty-products': { name: 'Beauty Products', price: 0, duration: 'Variable' }
+  };
+
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+  timeInput.setAttribute('min', '09:00');
+  timeInput.setAttribute('max', '19:00');
+
+  serviceSelect.addEventListener('change', updateSummary);
+  dateInput.addEventListener('change', updateSummary);
+  timeInput.addEventListener('change', updateSummary);
+  nameInput.addEventListener('input', updateSummary);
+  phoneInput.addEventListener('input', updateSummary);
+
+  function updateSummary(){
+    if(serviceSelect.value){
+      const service = servicePricing[serviceSelect.value];
+      document.getElementById('summaryService').textContent = service.name;
+      document.getElementById('summaryService').classList.remove('empty');
+      document.getElementById('summaryDuration').textContent = service.duration;
+      document.getElementById('summaryPrice').textContent = service.price > 0 ? `₦${service.price.toLocaleString()}` : 'Consultation';
+    } else {
+      document.getElementById('summaryService').textContent = 'Not selected';
+      document.getElementById('summaryService').classList.add('empty');
+      document.getElementById('summaryPrice').textContent = '₦—';
+    }
+
+    if(dateInput.value){
+      const date = new Date(dateInput.value);
+      const formatted = date.toLocaleDateString('en-NG', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('summaryDate').textContent = formatted;
+      document.getElementById('summaryDate').classList.remove('empty');
+    } else {
+      document.getElementById('summaryDate').textContent = 'Not selected';
+      document.getElementById('summaryDate').classList.add('empty');
+    }
+
+    if(timeInput.value){
+      const [hour, min] = timeInput.value.split(':');
+      const timeObj = new Date(2000, 0, 1, hour, min);
+      const formatted = timeObj.toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit', hour12: true });
+      document.getElementById('summaryTime').textContent = formatted;
+      document.getElementById('summaryTime').classList.remove('empty');
+    } else {
+      document.getElementById('summaryTime').textContent = 'Not selected';
+      document.getElementById('summaryTime').classList.add('empty');
+    }
+
+    if(nameInput.value){
+      document.getElementById('summaryName').textContent = nameInput.value;
+      document.getElementById('summaryName').classList.remove('empty');
+    } else {
+      document.getElementById('summaryName').textContent = 'Not entered';
+      document.getElementById('summaryName').classList.add('empty');
+    }
+
+    if(phoneInput.value){
+      document.getElementById('summaryPhone').textContent = phoneInput.value;
+      document.getElementById('summaryPhone').classList.remove('empty');
+    } else {
+      document.getElementById('summaryPhone').textContent = 'Not entered';
+      document.getElementById('summaryPhone').classList.add('empty');
+    }
+  }
+
+  function validateForm(){
+    let isValid = true;
+    const fields = [
+      { input: serviceSelect, errorId: 'serviceError', validate: () => serviceSelect.value !== '' },
+      { input: dateInput, errorId: 'dateError', validate: () => dateInput.value !== '' },
+      { input: timeInput, errorId: 'timeError', validate: () => timeInput.value !== '' },
+      { input: nameInput, errorId: 'nameError', validate: () => nameInput.value.trim() !== '' },
+      { input: phoneInput, errorId: 'phoneError', validate: () => /^[0-9]{10,11}$/.test(phoneInput.value.replace(/\D/g, '')) }
+    ];
+
+    if(emailInput.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)){
+      document.getElementById('emailError').classList.add('show');
+      emailInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('emailError').classList.remove('show');
+      emailInput.classList.remove('invalid');
+    }
+
+    fields.forEach(field => {
+      const errorEl = document.getElementById(field.errorId);
+      if(!field.validate()){
+        field.input.classList.add('invalid');
+        errorEl.classList.add('show');
+        isValid = false;
+      } else {
+        field.input.classList.remove('invalid');
+        errorEl.classList.remove('show');
+      }
+    });
+
+    return isValid;
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if(!validateForm()) return;
+
+    const bookingData = {
+      service: serviceSelect.options[serviceSelect.selectedIndex].text,
+      date: dateInput.value,
+      time: timeInput.value,
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      notes: notesInput.value,
+      timestamp: new Date().toISOString(),
+      status: 'pending'
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving...';
+
+    db.collection('bookings').add(bookingData)
+      .then((docRef) => {
+        sendToWebhook(bookingData);
+        successMsg.classList.add('show');
+        submitBtn.textContent = 'Booking Confirmed!';
+
+        setTimeout(() => {
+          form.reset();
+          updateSummary();
+          successMsg.classList.remove('show');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Confirm Booking';
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Error saving booking. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm Booking';
+      });
+  });
+
+  function sendToWebhook(bookingData){
+    const webhookUrl = 'https://hook.eu1.make.com/4q1am3vec1r7919wpmcxmqhjgsj1iuvq';
+    fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookingData)
+    }).catch(error => console.error('Webhook error:', error));
+  }
+
+  updateSummary();
+
+  // ADMIN
+  const ADMIN_PASSWORD = 'keisha123';
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const adminLogin = document.getElementById('adminLogin');
+  const adminContent = document.getElementById('adminContent');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const bookingsContainer = document.getElementById('bookingsContainer');
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const password = document.getElementById('adminEmail').value.trim();
+
+    if(password === ADMIN_PASSWORD){
+      loginError.classList.remove('show');
+      adminLogin.style.display = 'none';
+      adminContent.classList.add('active');
+      loadBookings();
+    } else {
+      loginError.textContent = 'Incorrect password';
+      loginError.classList.add('show');
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    adminLogin.style.display = 'flex';
+    adminContent.classList.remove('active');
+    loginForm.reset();
+    loginError.classList.remove('show');
+  });
+
+  async function loadBookings(){
+    bookingsContainer.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading bookings...</p></div>';
+
+    try {
+      const snapshot = await db.collection('bookings').orderBy('timestamp', 'desc').get();
+
+      if(snapshot.empty){
+        bookingsContainer.innerHTML = '<div class="empty-state"><p>No bookings yet</p></div>';
+        updateStats([]);
+        return;
+      }
+
+      const bookings = [];
+      snapshot.forEach(doc => bookings.push({ id: doc.id, ...doc.data() }));
+      renderBookings(bookings);
+      updateStats(bookings);
+    } catch(error){
+      console.error('Error:', error);
+      bookingsContainer.innerHTML = '<div class="empty-state"><p>Error loading bookings</p></div>';
+    }
+  }
+
+  function renderBookings(bookings){
+    const html = `
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${bookings.map(b => `
+            <tr>
+              <td>${b.name}</td>
+              <td>${b.service}</td>
+              <td>${new Date(b.date).toLocaleDateString('en-NG', {year:'numeric', month:'short', day:'numeric'})}</td>
+              <td>${b.time}</td>
+              <td>${b.phone}</td>
+              <td><span class="status-badge status-${b.status || 'pending'}">${b.status || 'pending'}</span></td>
+              <td>
+                <div class="action-buttons">
+                  ${getActionButtons(b.id, b.status)}
+                </div>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
+    bookingsContainer.innerHTML = html;
+
+    document.querySelectorAll('.status-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const bookingId = e.target.dataset.id;
+        const newStatus = e.target.dataset.status;
+        updateBookingStatus(bookingId, newStatus);
+      });
+    });
+
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const bookingId = e.target.dataset.id;
+        deleteBooking(bookingId);
+      });
+    });
+  }
+
+  function getActionButtons(bookingId, currentStatus){
+    const buttons = [];
+    if(currentStatus !== 'confirmed'){
+      buttons.push(`<button class="btn-sm status-btn" data-id="${bookingId}" data-status="confirmed">Confirm</button>`);
+    }
+    if(currentStatus !== 'completed'){
+      buttons.push(`<button class="btn-sm status-btn" data-id="${bookingId}" data-status="completed">Complete</button>`);
+    }
+    buttons.push(`<button class="btn-sm danger delete-btn" data-id="${bookingId}">Delete</button>`);
+    return buttons.join('');
+  }
+
+  async function updateBookingStatus(bookingId, newStatus){
+    try {
+      await db.collection('bookings').doc(bookingId).update({ status: newStatus });
+      loadBookings();
+    } catch(error){
+      console.error('Error:', error);
+      alert('Error updating booking');
+    }
+  }
+
+  async function deleteBooking(bookingId){
+    if(!confirm('Delete this booking?')) return;
+    try {
+      await db.collection('bookings').doc(bookingId).delete();
+      loadBookings();
+    } catch(error){
+      console.error('Error:', error);
+      alert('Error deleting booking');
+    }
+  }
+
+  function updateStats(bookings){
+    const total = bookings.length;
+    const pending = bookings.filter(b => (b.status || 'pending') === 'pending').length;
+    const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+    const completed = bookings.filter(b => b.status === 'completed').length;
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statPending').textContent = pending;
+    document.getElementById('statConfirmed').textContent = confirmed;
+    document.getElementById('statCompleted').textContent = completed;
+  }
+</script>
+
+</body>
+</html>
