@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For Treasure ❤️</title>
+<title>For Chikoso ❤️</title>
 
 <style>
 *{
@@ -32,29 +32,29 @@ body{
 
 .container{
     text-align:center;
-    z-index:2;
     padding:40px;
-}
-
-h1{
-    font-size:4rem;
-    color:white;
-    text-shadow:0 0 15px rgba(255,255,255,.8);
-    animation:glow 2s infinite alternate;
-}
-
-h2{
-    margin-top:20px;
-    color:white;
-    font-size:2rem;
-    font-weight:300;
-    opacity:.95;
+    z-index:2;
 }
 
 .heart{
     font-size:90px;
     animation:beat .9s infinite;
-    margin:20px 0;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#fff;
+    font-size:4rem;
+    text-shadow:0 0 15px rgba(255,255,255,.9);
+    animation:glow 2s infinite alternate;
+}
+
+p{
+    color:#fff;
+    font-size:1.6rem;
+    margin-top:20px;
+    line-height:1.6;
+    max-width:700px;
 }
 
 @keyframes beat{
@@ -64,13 +64,13 @@ h2{
 
 @keyframes glow{
     from{
-        text-shadow:0 0 10px white,
-                    0 0 20px #ff66b2,
-                    0 0 30px #ff1493;
+        text-shadow:0 0 10px #fff,
+                    0 0 20px #ff69b4,
+                    0 0 35px #ff1493;
     }
     to{
-        text-shadow:0 0 20px white,
-                    0 0 40px #ff66b2,
+        text-shadow:0 0 20px #fff,
+                    0 0 40px #ff69b4,
                     0 0 60px #ff1493;
     }
 }
@@ -78,9 +78,8 @@ h2{
 .floating-heart{
     position:absolute;
     color:#fff;
-    font-size:25px;
-    animation:float linear infinite;
-    opacity:.8;
+    animation:float linear forwards;
+    opacity:0.9;
 }
 
 @keyframes float{
@@ -101,32 +100,30 @@ h2{
 
 <div class="container">
     <div class="heart">❤️</div>
-    <h1>I Love You, Treasure ❤️</h1>
-    <h2>
-        Every heartbeat whispers your name.<br>
-        You are my favorite person, my peace,<br>
-        my happiness, and my forever. 💖
-    </h2>
+    <h1>I Love You, Chikoso ❤️</h1>
+    <p>
+        You are the most beautiful part of my life.<br>
+        Every heartbeat reminds me how lucky I am to have you.<br>
+        No matter where life takes us, my heart will always choose you.
+        💖 Forever and Always. 💖
+    </p>
 </div>
 
 <script>
 function createHeart(){
-    const heart=document.createElement("div");
-    heart.className="floating-heart";
-    heart.innerHTML=["❤️","💖","💕","💘","💗","💞"][Math.floor(Math.random()*6)];
-
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(20+Math.random()*35)+"px";
-    heart.style.animationDuration=(5+Math.random()*6)+"s";
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = ["❤️","💕","💖","💘","💝","💗"][Math.floor(Math.random()*6)];
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*40) + "px";
+    heart.style.animationDuration = (5 + Math.random()*5) + "s";
 
     document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    },11000);
+    setTimeout(() => heart.remove(), 10000);
 }
 
-setInterval(createHeart,180);
+setInterval(createHeart, 180);
 </script>
 
 </body>
