@@ -842,7 +842,6 @@
     <div class="nav-tabs">
       <button class="nav-btn active" data-page="home">Home</button>
       <button class="nav-btn" data-page="booking">Book</button>
-      <button class="nav-btn" data-page="admin">Admin</button>
     </div>
   </div>
 </nav>
@@ -1240,6 +1239,31 @@
       btn.classList.add('active');
     });
   });
+
+  // HIDDEN ADMIN ACCESS
+  // Press Ctrl+Shift+A to access admin, or use ?admin=true in URL
+  function checkAdminAccess(){
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('admin') === 'true'){
+      openAdminAccess();
+    }
+  }
+
+  function openAdminAccess(){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('admin').classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
+  // Keyboard shortcut: Ctrl+Shift+A
+  document.addEventListener('keydown', (e) => {
+    if(e.ctrlKey && e.shiftKey && e.key === 'A'){
+      openAdminAccess();
+    }
+  });
+
+  checkAdminAccess();
 
   // BOOKING FORM
   const form = document.getElementById('bookingForm');
