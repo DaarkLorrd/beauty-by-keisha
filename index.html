@@ -213,6 +213,104 @@
     color:rgba(61,61,61,0.65);
   }
 
+  .service-price{
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px solid rgba(196,135,107,0.25);
+    font-family:'Marcellus', serif;
+    font-size:1.05rem;
+    color:var(--rose-gold);
+    letter-spacing:0.02em;
+  }
+
+  .price-note{
+    margin-top:32px;
+    font-size:0.82rem;
+    color:rgba(61,61,61,0.55);
+    text-align:center;
+    font-style:italic;
+  }
+
+  /* ---------- FEATURED LOOK BOOK ---------- */
+  .featured{
+    background:linear-gradient(180deg, var(--champagne) 0%, var(--cream) 100%);
+    padding:88px 0;
+  }
+  .featured-head{
+    text-align:center;
+    margin-bottom:48px;
+  }
+  .featured-head h2{
+    font-family:'Marcellus', serif;
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    letter-spacing:0.02em;
+    color:var(--text-dark);
+    margin-bottom:10px;
+  }
+  .featured-head p{
+    font-size:1rem;
+    color:rgba(61,61,61,0.65);
+  }
+
+  .featured-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:220px;
+    gap:16px;
+  }
+  .featured-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:10px;
+    cursor:pointer;
+    background:var(--accent);
+  }
+  .featured-item.tall{grid-row:span 2;}
+  .featured-item.wide{grid-column:span 2;}
+
+  .featured-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .featured-item:hover img{transform:scale(1.06);}
+
+  .featured-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(61,45,38,0.78) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:22px;
+    color:white;
+  }
+  .featured-tag{
+    display:inline-block;
+    align-self:flex-start;
+    font-size:0.65rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    background:rgba(255,255,255,0.9);
+    color:var(--rose-gold);
+    padding:5px 12px;
+    border-radius:999px;
+    margin-bottom:10px;
+    font-weight:600;
+  }
+  .featured-overlay h3{
+    font-family:'Marcellus', serif;
+    font-size:1.25rem;
+    letter-spacing:0.02em;
+    font-weight:400;
+  }
+
+  @media(max-width:900px){
+    .featured-grid{grid-template-columns:repeat(2, 1fr);grid-auto-rows:200px;}
+    .featured-item.wide{grid-column:span 2;}
+    .featured-item.tall{grid-row:span 1;}
+  }
+  @media(max-width:520px){
+    .featured-grid{grid-template-columns:1fr;grid-auto-rows:240px;}
+    .featured-item.wide{grid-column:span 1;}
+  }
+
   .social-links{
     display:flex;gap:16px;
     margin-top:44px;
@@ -803,13 +901,64 @@
 
         <div class="social-links">
           <a href="https://wa.me/2349130585589" class="social-btn" title="WhatsApp" target="_blank" rel="noopener"><img src="https://i.imgur.com/FYDvbAz.jpeg" alt="WhatsApp"></a>
-          <a href="https://instagram.com/beautybykeisha" class="social-btn" title="Instagram" target="_blank" rel="noopener"><img src="https://i.imgur.com/iVCDxrP.jpeg" alt="Instagram"></a>
-          <a href="https://tiktok.com/@beautybykeisha" class="social-btn" title="TikTok" target="_blank" rel="noopener"><img src="https://i.imgur.com/PQMdqIB.jpeg" alt="TikTok"></a>
+          <a href="https://instagram.com/beautybykeisha0" class="social-btn" title="Instagram" target="_blank" rel="noopener"><img src="https://i.imgur.com/iVCDxrP.jpeg" alt="Instagram"></a>
+          <a href="https://tiktok.com/@beautybykeisha0" class="social-btn" title="TikTok" target="_blank" rel="noopener"><img src="https://i.imgur.com/PQMdqIB.jpeg" alt="TikTok"></a>
         </div>
       </div>
 
       <div class="hero-visual">
         <img src="https://i.imgur.com/uG2b2k2.png" alt="Beauty By Keisha">
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="wrap">
+      <div class="featured-head">
+        <h2>The Look Book</h2>
+        <p>A glimpse of what we do best</p>
+      </div>
+
+      <div class="featured-grid">
+        <div class="featured-item tall" onclick="showGallery('hair')">
+          <img src="https://images.unsplash.com/photo-1673470907547-1c0c6a996095?q=80&w=800" alt="Box braids">
+          <div class="featured-overlay">
+            <span class="featured-tag">Hair</span>
+            <h3>Box Braids</h3>
+          </div>
+        </div>
+        <div class="featured-item" onclick="showGallery('nails')">
+          <img src="https://images.unsplash.com/photo-1742029562131-53edea2a95a6?q=80&w=800" alt="Red nails">
+          <div class="featured-overlay">
+            <span class="featured-tag">Nails</span>
+            <h3>Red Nails</h3>
+          </div>
+        </div>
+        <div class="featured-item" onclick="showGallery('nails')">
+          <img src="https://images.unsplash.com/photo-1634155322814-907072ac721f?q=80&w=800" alt="Makeup">
+          <div class="featured-overlay">
+            <span class="featured-tag">Makeup</span>
+            <h3>Full Glam</h3>
+          </div>
+        </div>
+        <div class="featured-item" onclick="showGallery('spa')">
+          <img src="https://images.unsplash.com/photo-1583106617217-406e2c5656fd?q=80&w=800" alt="Facial treatment">
+          <div class="featured-overlay">
+            <span class="featured-tag">Spa</span>
+            <h3>Facials</h3>
+          </div>
+        </div>
+        <div class="featured-item wide" onclick="showGallery('nails')">
+          <img src="https://images.unsplash.com/photo-1677808448202-1270f6872642?q=80&w=1200" alt="Makeup and nails">
+          <div class="featured-overlay">
+            <span class="featured-tag">Signature</span>
+            <h3>Makeup &amp; Nails</h3>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px;">
+        <button class="btn btn-gold" onclick="showGallery('all')">View Full Gallery</button>
       </div>
     </div>
   </section>
@@ -825,29 +974,36 @@
         <div class="service-card" onclick="showGallery('hair')">
           <div class="service-icon">✨</div>
           <h3>Hair Salon</h3>
-          <p>Braids, weaves, cuts & styling</p>
+          <p>Braids, weaves, cuts &amp; styling</p>
+          <div class="service-price">from ₦25,000</div>
         </div>
         <div class="service-card" onclick="showGallery('nails')">
           <div class="service-icon">💅</div>
-          <h3>Nails & Lashes</h3>
-          <p>Gel, acrylic, nails & lashes</p>
+          <h3>Nails &amp; Lashes</h3>
+          <p>Gel, acrylic, nails &amp; lashes</p>
+          <div class="service-price">from ₦15,000</div>
         </div>
         <div class="service-card" onclick="showGallery('spa')">
           <div class="service-icon">🧖</div>
           <h3>Spa</h3>
-          <p>Facials, massage & skin care</p>
+          <p>Facials, massage &amp; skin care</p>
+          <div class="service-price">from ₦20,000</div>
         </div>
         <div class="service-card" onclick="showGallery('wigs')">
           <div class="service-icon">👑</div>
           <h3>Premium Wigs</h3>
           <p>Human-hair wigs, custom-fitted</p>
+          <div class="service-price">from ₦150,000</div>
         </div>
         <div class="service-card" onclick="showGallery('products')">
           <div class="service-icon">🧴</div>
           <h3>Beauty Products</h3>
-          <p>Haircare & skincare we love</p>
+          <p>Haircare &amp; skincare we love</p>
+          <div class="service-price">from ₦8,000</div>
         </div>
       </div>
+
+      <p class="price-note">Prices are starting rates and vary by length, style and product choice. Final quote confirmed at consultation.</p>
     </div>
   </section>
 
@@ -870,13 +1026,13 @@
         <div class="foot-col">
           <h4>Follow</h4>
           <ul>
-            <li><a href="https://instagram.com/beautybykeisha" target="_blank" rel="noopener">Instagram: @beautybykeisha</a></li>
-            <li><a href="https://tiktok.com/@beautybykeisha" target="_blank" rel="noopener">TikTok: @beautybykeisha</a></li>
+            <li><a href="https://instagram.com/beautybykeisha0" target="_blank" rel="noopener">Instagram: @beautybykeisha0</a></li>
+            <li><a href="https://tiktok.com/@beautybykeisha0" target="_blank" rel="noopener">TikTok: @beautybykeisha0</a></li>
           </ul>
           <div class="social-links" style="margin-top:20px;">
             <a href="https://wa.me/2349130585589" class="social-btn" title="WhatsApp" target="_blank" rel="noopener"><img src="https://i.imgur.com/FYDvbAz.jpeg" alt="WhatsApp"></a>
-            <a href="https://instagram.com/beautybykeisha" class="social-btn" title="Instagram" target="_blank" rel="noopener"><img src="https://i.imgur.com/iVCDxrP.jpeg" alt="Instagram"></a>
-            <a href="https://tiktok.com/@beautybykeisha" class="social-btn" title="TikTok" target="_blank" rel="noopener"><img src="https://i.imgur.com/PQMdqIB.jpeg" alt="TikTok"></a>
+            <a href="https://instagram.com/beautybykeisha0" class="social-btn" title="Instagram" target="_blank" rel="noopener"><img src="https://i.imgur.com/iVCDxrP.jpeg" alt="Instagram"></a>
+            <a href="https://tiktok.com/@beautybykeisha0" class="social-btn" title="TikTok" target="_blank" rel="noopener"><img src="https://i.imgur.com/PQMdqIB.jpeg" alt="TikTok"></a>
           </div>
         </div>
       </div>
@@ -1216,13 +1372,23 @@
   nameInput.addEventListener('input', updateSummary);
   phoneInput.addEventListener('input', updateSummary);
 
+  const servicePricing = {
+    'hair-salon': 'from ₦25,000',
+    'nail-lash': 'from ₦15,000',
+    'spa': 'from ₦20,000',
+    'wig-sales': 'from ₦150,000',
+    'beauty-products': 'from ₦8,000'
+  };
+
   function updateSummary(){
     if(serviceSelect.value){
       document.getElementById('summaryService').textContent = serviceSelect.options[serviceSelect.selectedIndex].text;
       document.getElementById('summaryService').classList.remove('empty');
+      document.getElementById('summaryPrice').textContent = servicePricing[serviceSelect.value] || '—';
     } else {
       document.getElementById('summaryService').textContent = 'Not selected';
       document.getElementById('summaryService').classList.add('empty');
+      document.getElementById('summaryPrice').textContent = '—';
     }
 
     if(dateInput.value){
